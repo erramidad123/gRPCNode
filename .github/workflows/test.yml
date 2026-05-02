@@ -6,10 +6,17 @@ on:
   pull_request:
     branches: ["main", "Main"]
 
+# Required for GitHub Pages deployment
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
 jobs:
   test:
     runs-on: ubuntu-latest
 
+    # Only publish pages from one Node version to avoid conflicts
     strategy:
       matrix:
         node-version: [18.x, 20.x]
@@ -30,10 +37,20 @@ jobs:
       - name: Run tests
         run: npm test
 
-      - name: Upload Mochawesome report
+      - name: Upload Mochawesome report artifact
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: mochawesome-report-node-${{ matrix.node-version }}
           path: reports/
           retention-days: 14
+
+      # Deploy to GitHub Pages only from one Node version and only on push (not PRs)
+      - name: Deploy report to GitHub Pages
+        if: always() && matrix.node-version == '20.x' && github.event_name == 'push'
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: reports
+          destination_dir: .
+          keep_files: false

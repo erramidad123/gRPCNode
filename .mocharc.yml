@@ -1,0 +1,13 @@
+spec: test/**/*.test.js
+timeout: 10000
+exit: true
+reporter: mochawesome
+reporter-option:
+  - reportDir=reports
+  - reportFilename=test-report
+  - overwrite=true
+  - html=true
+  - json=true
+  - charts=true
+  - embeddedScreenshots=true
+  - inline=true

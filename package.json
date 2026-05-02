@@ -1,0 +1,23 @@
+{
+  "name": "grpc-mocha-framework",
+  "version": "1.0.0",
+  "description": "Mocha-based framework for testing gRPC services",
+  "scripts": {
+    "test": "mocha",
+    "test:watch": "mocha --watch",
+    "test:report": "mocha && open-cli reports/test-report.html",
+    "report:open": "open-cli reports/test-report.html",
+    "start:server": "node src/server.js"
+  },
+  "dependencies": {
+    "@grpc/grpc-js": "^1.10.0",
+    "@grpc/proto-loader": "^0.7.13"
+  },
+  "devDependencies": {
+    "chai": "^4.4.1",
+    "mocha": "^10.4.0",
+    "mochawesome": "^7.1.4",
+    "mochawesome-merge": "^5.1.1",
+    "mochawesome-report-generator": "^6.3.2"
+  }
+}

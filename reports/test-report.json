@@ -1,0 +1,285 @@
+{
+  "stats": {
+    "suites": 3,
+    "tests": 5,
+    "passes": 4,
+    "pending": 0,
+    "failures": 1,
+    "start": "2026-04-28T01:38:42.123Z",
+    "end": "2026-04-28T01:38:42.224Z",
+    "duration": 101,
+    "testsRegistered": 5,
+    "passPercent": 80,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "b8e7c980-0481-4aa5-8c10-3d8351774e3e",
+      "title": "",
+      "fullFile": "C:\\Users\\erram\\Desktop\\gRPC\\mocha\\test\\helloworld.test.js",
+      "file": "\\test\\helloworld.test.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "ef0f8645-6f2f-4518-8ff1-f6fe232a1733",
+          "title": "Greeter Service",
+          "fullFile": "C:\\Users\\erram\\Desktop\\gRPC\\mocha\\test\\helloworld.test.js",
+          "file": "\\test\\helloworld.test.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook in \"Greeter Service\"",
+              "fullTitle": "Greeter Service \"before all\" hook in \"Greeter Service\"",
+              "timedOut": false,
+              "duration": 18,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "this.timeout(10000);\nserver = serverFactory();\nserver.bindAsync(\n  `127.0.0.1:${port}`,\n  grpc.ServerCredentials.createInsecure(),\n  (err, assignedPort) => {\n    if (err) return done(err);\n    boundPort = assignedPort;\n    done();\n  },\n);",
+              "err": {},
+              "uuid": "bfb18a3b-28b9-4754-8948-a4eab56bb9fc",
+              "parentUUID": "ef0f8645-6f2f-4518-8ff1-f6fe232a1733",
+              "isHook": true,
+              "skipped": false
+            },
+            {
+              "title": "\"before all\" hook in \"Greeter Service\"",
+              "fullTitle": "Greeter Service \"before all\" hook in \"Greeter Service\"",
+              "timedOut": false,
+              "duration": 23,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "this.timeout(5000);\nconst proto = loadProto(PROTO_PATH);\nclient = createClient(proto.helloworld.Greeter, lifecycle.getAddress());\nawait waitForReady(client);",
+              "err": {},
+              "uuid": "3caa1cee-0c07-4c1d-af24-faa100882305",
+              "parentUUID": "ef0f8645-6f2f-4518-8ff1-f6fe232a1733",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after all\" hook in \"Greeter Service\"",
+              "fullTitle": "Greeter Service \"after all\" hook in \"Greeter Service\"",
+              "timedOut": false,
+              "duration": 4,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "this.timeout(5000);\nserver.tryShutdown(done);",
+              "err": {},
+              "uuid": "4bafa653-3901-4c15-86c6-c4ec805b69c1",
+              "parentUUID": "ef0f8645-6f2f-4518-8ff1-f6fe232a1733",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [],
+          "suites": [
+            {
+              "uuid": "415d137e-9754-47ec-8628-3d1f9504ddf5",
+              "title": "SayHello",
+              "fullFile": "C:\\Users\\erram\\Desktop\\gRPC\\mocha\\test\\helloworld.test.js",
+              "file": "\\test\\helloworld.test.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "returns a greeting for a valid name",
+                  "fullTitle": "Greeter Service SayHello returns a greeting for a valid name",
+                  "timedOut": false,
+                  "duration": 23,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "const res = await client.sayHello({ name: \"World\" });\nconsole.log(\"[SayHello] response:\", res);\nexpect(res).to.have.property(\"message\", \"Hello, World!\");",
+                  "err": {},
+                  "uuid": "ae5da9a8-ee54-4ee4-b63f-207fe0ba8835",
+                  "parentUUID": "415d137e-9754-47ec-8628-3d1f9504ddf5",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "returns a greeting when name is an empty string",
+                  "fullTitle": "Greeter Service SayHello returns a greeting when name is an empty string",
+                  "timedOut": false,
+                  "duration": 7,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "const res = await client.sayHello({ name: \"\" });\nconsole.log(\"[SayHello] response:\", res);\nexpect(res.message).to.equal(\"Hello, j!\");",
+                  "err": {
+                    "message": "AssertionError: expected 'Hello, !' to equal 'Hello, j!'",
+                    "estack": "AssertionError: expected 'Hello, !' to equal 'Hello, j!'\n    at Context.<anonymous> (test\\helloworld.test.js:45:30)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)",
+                    "diff": "- Hello, !\n+ Hello, j!\n"
+                  },
+                  "uuid": "5beb8bba-7c6c-4afc-bebf-13a32f604d24",
+                  "parentUUID": "415d137e-9754-47ec-8628-3d1f9504ddf5",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "handles names with special characters",
+                  "fullTitle": "Greeter Service SayHello handles names with special characters",
+                  "timedOut": false,
+                  "duration": 3,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "const res = await client.sayHello({ name: \"Alice & Bob\" });\nconsole.log(\"[SayHello] response:\", res);\nexpect(res.message).to.equal(\"Hello, Alice & Bob!\");",
+                  "err": {},
+                  "uuid": "1924124c-e0ce-463f-a5dc-c71a87d328eb",
+                  "parentUUID": "415d137e-9754-47ec-8628-3d1f9504ddf5",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "ae5da9a8-ee54-4ee4-b63f-207fe0ba8835",
+                "1924124c-e0ce-463f-a5dc-c71a87d328eb"
+              ],
+              "failures": [
+                "5beb8bba-7c6c-4afc-bebf-13a32f604d24"
+              ],
+              "pending": [],
+              "skipped": [],
+              "duration": 33,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 10000
+            },
+            {
+              "uuid": "08b1429b-9587-465d-8753-a82f66b0fb88",
+              "title": "SayHelloAgain",
+              "fullFile": "C:\\Users\\erram\\Desktop\\gRPC\\mocha\\test\\helloworld.test.js",
+              "file": "\\test\\helloworld.test.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "returns a second distinct greeting",
+                  "fullTitle": "Greeter Service SayHelloAgain returns a second distinct greeting",
+                  "timedOut": false,
+                  "duration": 3,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "const res = await client.sayHelloAgain({ name: \"World\" });\nconsole.log(\"[SayHelloAgain] response:\", res);\nexpect(res).to.have.property(\"message\", \"Hello again, World!\");",
+                  "err": {},
+                  "uuid": "99c90fe5-a74a-43ea-8d36-ec521a04e310",
+                  "parentUUID": "08b1429b-9587-465d-8753-a82f66b0fb88",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "is independent from SayHello",
+                  "fullTitle": "Greeter Service SayHelloAgain is independent from SayHello",
+                  "timedOut": false,
+                  "duration": 7,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "const [first, second] = await Promise.all([\n  client.sayHello({ name: \"Test\" }),\n  client.sayHelloAgain({ name: \"Test\" }),\n]);\nconsole.log(\"[SayHello] response:\", first);\nconsole.log(\"[SayHelloAgain] response:\", second);\nexpect(first.message).to.not.equal(second.message);",
+                  "err": {},
+                  "uuid": "ee6e4697-e0e0-4a2d-bdb2-f11d4b27c62e",
+                  "parentUUID": "08b1429b-9587-465d-8753-a82f66b0fb88",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "99c90fe5-a74a-43ea-8d36-ec521a04e310",
+                "ee6e4697-e0e0-4a2d-bdb2-f11d4b27c62e"
+              ],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 10,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 10000
+            }
+          ],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 10000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 10000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "10.8.2"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "test-report",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "reports",
+        "reportFilename": "test-report",
+        "overwrite": "true",
+        "html": "true",
+        "json": "true",
+        "charts": "true",
+        "embeddedScreenshots": "true",
+        "inline": "true"
+      },
+      "version": "6.3.2"
+    }
+  }
+}

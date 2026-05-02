@@ -5,6 +5,7 @@ on:
     branches: ["main", "Main"]
   pull_request:
     branches: ["main", "Main"]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -32,11 +33,11 @@ jobs:
         run: npm test
 
       - name: Prepare report for Pages
-        if: always() && github.event_name == 'push'
+        if: always() && github.event_name != 'pull_request'
         run: cp reports/test-report.html reports/index.html
 
       - name: Upload Pages artifact
-        if: always() && github.event_name == 'push'
+        if: always() && github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v3
         with:
           path: reports/
@@ -44,7 +45,7 @@ jobs:
   deploy:
     needs: test
     runs-on: ubuntu-latest
-    if: always() && github.event_name == 'push'
+    if: always() && github.event_name != 'pull_request'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

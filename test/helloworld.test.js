@@ -12,6 +12,11 @@ const { useGrpcServer } = require("./helpers/serverLifecycle");
 
 const PROTO_PATH = path.join(__dirname, "../protos/helloworld.proto");
 
+console.log(
+  "[ENV] Running tests in environment:",
+  process.env.TEST_ENV || "dev",
+);
+
 describe("Greeter Service", function () {
   const lifecycle = useGrpcServer(createServer);
   let client;

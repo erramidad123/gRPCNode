@@ -9,6 +9,14 @@ on:
     types: [cpprepo1-push]
   workflow_dispatch:
     inputs:
+      environment:
+        description: "Target environment (dev or qa)"
+        required: false
+        default: "dev"
+        type: choice
+        options:
+          - dev
+          - qa
       grep:
         description: "Test name to run (leave empty to run all tests)"
         required: false
@@ -37,6 +45,8 @@ jobs:
         run: npm ci
 
       - name: Run tests
+        env:
+          TEST_ENV: ${{ github.event.inputs.environment || 'dev' }}
         run: |
           if [ -n "${{ github.event.inputs.grep }}" ]; then
             npx mocha --grep "${{ github.event.inputs.grep }}"

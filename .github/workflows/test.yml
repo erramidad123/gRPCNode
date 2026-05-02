@@ -42,7 +42,9 @@ jobs:
 
       - name: Rename report to index.html for GitHub Pages
         if: always()
-        run: cp reports/test-report.html reports/index.html
+        run: |
+          cp reports/test-report.html reports/index.html
+          touch reports/.nojekyll
 
       - name: Deploy report to GitHub Pages
         if: always() && github.event_name == 'push'
@@ -52,3 +54,4 @@ jobs:
           publish_dir: reports
           destination_dir: .
           keep_files: false
+          enable_jekyll: false

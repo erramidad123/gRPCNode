@@ -6,9 +6,8 @@ on:
   pull_request:
     branches: ["main", "Main"]
 
-# Required for GitHub Pages deployment
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
@@ -32,26 +31,24 @@ jobs:
       - name: Run tests
         run: npm test
 
-      - name: Upload Mochawesome report artifact
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: mochawesome-report
-          path: reports/
-          retention-days: 14
-
-      - name: Rename report to index.html for GitHub Pages
-        if: always()
-        run: |
-          cp reports/test-report.html reports/index.html
-          touch reports/.nojekyll
-
-      - name: Deploy report to GitHub Pages
+      - name: Prepare report for Pages
         if: always() && github.event_name == 'push'
-        uses: peaceiris/actions-gh-pages@v4
+        run: cp reports/test-report.html reports/index.html
+
+      - name: Upload Pages artifact
+        if: always() && github.event_name == 'push'
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: reports
-          destination_dir: .
-          keep_files: false
-          enable_jekyll: false
+          path: reports/
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    if: always() && github.event_name == 'push'
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

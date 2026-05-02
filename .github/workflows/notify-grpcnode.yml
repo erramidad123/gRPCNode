@@ -1,0 +1,24 @@
+# This file belongs in cpprepo1's .github/workflows/ directory.
+# It triggers the gRPCNode test suite whenever cpprepo1's main branch is pushed.
+#
+# Setup:
+#   1. Create a GitHub Personal Access Token (classic) with the `repo` scope.
+#   2. Add it as a secret named GRPCNODE_DISPATCH_TOKEN in cpprepo1's
+#      Settings > Secrets and variables > Actions.
+
+name: Notify gRPCNode on Push
+
+on:
+  push:
+    branches: ["main", "Main"]
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger gRPCNode tests
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.GRPCNODE_DISPATCH_TOKEN }}
+          repository: erramidad123/gRPCNode
+          event-type: cpprepo1-push

@@ -5,6 +5,8 @@ on:
     branches: ["main", "Main"]
   pull_request:
     branches: ["main", "Main"]
+  repository_dispatch:
+    types: [cpprepo1-push]
   workflow_dispatch:
     inputs:
       grep:

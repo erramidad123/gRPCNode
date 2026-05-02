@@ -42,7 +42,7 @@ describe("Greeter Service", function () {
     it("returns a greeting when name is an empty string", async function () {
       const res = await client.sayHello({ name: "" });
       console.log("[SayHello] response:", res);
-      expect(res.message).to.equal("Hello, j!");
+      expect(res.message).to.equal("Hello, !");
     });
 
     it("handles names with special characters", async function () {

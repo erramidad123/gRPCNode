@@ -2,14 +2,14 @@
   "stats": {
     "suites": 3,
     "tests": 5,
-    "passes": 4,
+    "passes": 5,
     "pending": 0,
-    "failures": 1,
-    "start": "2026-05-02T00:10:11.148Z",
-    "end": "2026-05-02T00:10:11.227Z",
+    "failures": 0,
+    "start": "2026-05-02T17:02:25.047Z",
+    "end": "2026-05-02T17:02:25.126Z",
     "duration": 79,
     "testsRegistered": 5,
-    "passPercent": 80,
+    "passPercent": 100,
     "pendingPercent": 0,
     "other": 0,
     "hasOther": false,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "e523d720-4b76-4894-817d-f4a3befc301a",
+      "uuid": "5299539b-619f-4126-a2aa-eb911841191b",
       "title": "",
       "fullFile": "C:\\Users\\erram\\Desktop\\gRPC\\gRPCNode\\test\\helloworld.test.js",
       "file": "\\test\\helloworld.test.js",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "186b2619-8d24-4699-984d-f478514aa4e4",
+          "uuid": "55e8e7e4-1281-40d3-86d9-22cfe1907181",
           "title": "Greeter Service",
           "fullFile": "C:\\Users\\erram\\Desktop\\gRPC\\gRPCNode\\test\\helloworld.test.js",
           "file": "\\test\\helloworld.test.js",
@@ -45,8 +45,8 @@
               "context": null,
               "code": "this.timeout(10000);\nserver = serverFactory();\nserver.bindAsync(\n  `127.0.0.1:${port}`,\n  grpc.ServerCredentials.createInsecure(),\n  (err, assignedPort) => {\n    if (err) return done(err);\n    boundPort = assignedPort;\n    done();\n  },\n);",
               "err": {},
-              "uuid": "a11e2a6d-44ce-4866-8e52-fa554f10ec30",
-              "parentUUID": "186b2619-8d24-4699-984d-f478514aa4e4",
+              "uuid": "8122ef08-1f16-47d5-bcda-b53a48a29711",
+              "parentUUID": "55e8e7e4-1281-40d3-86d9-22cfe1907181",
               "isHook": true,
               "skipped": false
             },
@@ -54,7 +54,7 @@
               "title": "\"before all\" hook in \"Greeter Service\"",
               "fullTitle": "Greeter Service \"before all\" hook in \"Greeter Service\"",
               "timedOut": false,
-              "duration": 19,
+              "duration": 24,
               "state": null,
               "speed": null,
               "pass": false,
@@ -63,8 +63,8 @@
               "context": null,
               "code": "this.timeout(5000);\nconst proto = loadProto(PROTO_PATH);\nclient = createClient(proto.helloworld.Greeter, lifecycle.getAddress());\nawait waitForReady(client);",
               "err": {},
-              "uuid": "538be252-12ce-4017-89af-0fd5cfd8841d",
-              "parentUUID": "186b2619-8d24-4699-984d-f478514aa4e4",
+              "uuid": "90e05409-9521-4bd1-8e64-ccdf8f91d678",
+              "parentUUID": "55e8e7e4-1281-40d3-86d9-22cfe1907181",
               "isHook": true,
               "skipped": false
             }
@@ -83,8 +83,8 @@
               "context": null,
               "code": "this.timeout(5000);\nserver.tryShutdown(done);",
               "err": {},
-              "uuid": "d7c832d9-e0ad-4b58-b5d4-43e7a6d86ff8",
-              "parentUUID": "186b2619-8d24-4699-984d-f478514aa4e4",
+              "uuid": "3c1f6088-4365-40b0-a17a-5f5d302fc987",
+              "parentUUID": "55e8e7e4-1281-40d3-86d9-22cfe1907181",
               "isHook": true,
               "skipped": false
             }
@@ -92,7 +92,7 @@
           "tests": [],
           "suites": [
             {
-              "uuid": "99ad072c-3369-48ce-a731-258da383aa69",
+              "uuid": "fcd0fa36-73ff-4e1d-ac67-df987cb15f90",
               "title": "SayHello",
               "fullFile": "C:\\Users\\erram\\Desktop\\gRPC\\gRPCNode\\test\\helloworld.test.js",
               "file": "\\test\\helloworld.test.js",
@@ -103,7 +103,7 @@
                   "title": "returns a greeting for a valid name",
                   "fullTitle": "Greeter Service SayHello returns a greeting for a valid name",
                   "timedOut": false,
-                  "duration": 16,
+                  "duration": 18,
                   "state": "passed",
                   "speed": "fast",
                   "pass": true,
@@ -112,8 +112,8 @@
                   "context": null,
                   "code": "const res = await client.sayHello({ name: \"World\" });\nconsole.log(\"[SayHello] response:\", res);\nexpect(res).to.have.property(\"message\", \"Hello, World!\");",
                   "err": {},
-                  "uuid": "e72dcf40-41ca-4f13-b6dd-e9b89ab186d8",
-                  "parentUUID": "99ad072c-3369-48ce-a731-258da383aa69",
+                  "uuid": "f6d1f0ce-0dde-41e7-ba52-2cfcc0b00b16",
+                  "parentUUID": "fcd0fa36-73ff-4e1d-ac67-df987cb15f90",
                   "isHook": false,
                   "skipped": false
                 },
@@ -121,21 +121,17 @@
                   "title": "returns a greeting when name is an empty string",
                   "fullTitle": "Greeter Service SayHello returns a greeting when name is an empty string",
                   "timedOut": false,
-                  "duration": 5,
-                  "state": "failed",
-                  "speed": null,
-                  "pass": false,
-                  "fail": true,
+                  "duration": 3,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
                   "pending": false,
                   "context": null,
-                  "code": "const res = await client.sayHello({ name: \"\" });\nconsole.log(\"[SayHello] response:\", res);\nexpect(res.message).to.equal(\"Hello, j!\");",
-                  "err": {
-                    "message": "AssertionError: expected 'Hello, !' to equal 'Hello, j!'",
-                    "estack": "AssertionError: expected 'Hello, !' to equal 'Hello, j!'\n    at Context.<anonymous> (test\\helloworld.test.js:45:30)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)",
-                    "diff": "- Hello, !\n+ Hello, j!\n"
-                  },
-                  "uuid": "43d471ef-8d06-4ee4-abfa-416a9b3358ad",
-                  "parentUUID": "99ad072c-3369-48ce-a731-258da383aa69",
+                  "code": "const res = await client.sayHello({ name: \"\" });\nconsole.log(\"[SayHello] response:\", res);\nexpect(res.message).to.equal(\"Hello, !\");",
+                  "err": {},
+                  "uuid": "eb664438-3811-4f73-9752-931f17c26f87",
+                  "parentUUID": "fcd0fa36-73ff-4e1d-ac67-df987cb15f90",
                   "isHook": false,
                   "skipped": false
                 },
@@ -152,20 +148,19 @@
                   "context": null,
                   "code": "const res = await client.sayHello({ name: \"Alice & Bob\" });\nconsole.log(\"[SayHello] response:\", res);\nexpect(res.message).to.equal(\"Hello, Alice & Bob!\");",
                   "err": {},
-                  "uuid": "ad1d64c4-8e57-4daf-83c4-b2122da3964d",
-                  "parentUUID": "99ad072c-3369-48ce-a731-258da383aa69",
+                  "uuid": "89c47c1d-7463-4f2a-95f3-99b8cca98068",
+                  "parentUUID": "fcd0fa36-73ff-4e1d-ac67-df987cb15f90",
                   "isHook": false,
                   "skipped": false
                 }
               ],
               "suites": [],
               "passes": [
-                "e72dcf40-41ca-4f13-b6dd-e9b89ab186d8",
-                "ad1d64c4-8e57-4daf-83c4-b2122da3964d"
+                "f6d1f0ce-0dde-41e7-ba52-2cfcc0b00b16",
+                "eb664438-3811-4f73-9752-931f17c26f87",
+                "89c47c1d-7463-4f2a-95f3-99b8cca98068"
               ],
-              "failures": [
-                "43d471ef-8d06-4ee4-abfa-416a9b3358ad"
-              ],
+              "failures": [],
               "pending": [],
               "skipped": [],
               "duration": 23,
@@ -174,7 +169,7 @@
               "_timeout": 10000
             },
             {
-              "uuid": "a60276de-6c0c-45a2-9765-11e393261cbe",
+              "uuid": "508ba2b7-6053-40c9-9600-e1d76e30e4c2",
               "title": "SayHelloAgain",
               "fullFile": "C:\\Users\\erram\\Desktop\\gRPC\\gRPCNode\\test\\helloworld.test.js",
               "file": "\\test\\helloworld.test.js",
@@ -194,8 +189,8 @@
                   "context": null,
                   "code": "const res = await client.sayHelloAgain({ name: \"World\" });\nconsole.log(\"[SayHelloAgain] response:\", res);\nexpect(res).to.have.property(\"message\", \"Hello again, World!\");",
                   "err": {},
-                  "uuid": "d9120198-21f5-4a63-8521-77ba1f238683",
-                  "parentUUID": "a60276de-6c0c-45a2-9765-11e393261cbe",
+                  "uuid": "ab0d5b67-f056-4db6-930a-8fed17a76aa7",
+                  "parentUUID": "508ba2b7-6053-40c9-9600-e1d76e30e4c2",
                   "isHook": false,
                   "skipped": false
                 },
@@ -203,7 +198,7 @@
                   "title": "is independent from SayHello",
                   "fullTitle": "Greeter Service SayHelloAgain is independent from SayHello",
                   "timedOut": false,
-                  "duration": 6,
+                  "duration": 4,
                   "state": "passed",
                   "speed": "fast",
                   "pass": true,
@@ -212,21 +207,21 @@
                   "context": null,
                   "code": "const [first, second] = await Promise.all([\n  client.sayHello({ name: \"Test\" }),\n  client.sayHelloAgain({ name: \"Test\" }),\n]);\nconsole.log(\"[SayHello] response:\", first);\nconsole.log(\"[SayHelloAgain] response:\", second);\nexpect(first.message).to.not.equal(second.message);",
                   "err": {},
-                  "uuid": "7d52a5fd-55f2-4cc5-a98f-b4c19b90a724",
-                  "parentUUID": "a60276de-6c0c-45a2-9765-11e393261cbe",
+                  "uuid": "6b389457-bfb0-4dcb-a697-af76c962630a",
+                  "parentUUID": "508ba2b7-6053-40c9-9600-e1d76e30e4c2",
                   "isHook": false,
                   "skipped": false
                 }
               ],
               "suites": [],
               "passes": [
-                "d9120198-21f5-4a63-8521-77ba1f238683",
-                "7d52a5fd-55f2-4cc5-a98f-b4c19b90a724"
+                "ab0d5b67-f056-4db6-930a-8fed17a76aa7",
+                "6b389457-bfb0-4dcb-a697-af76c962630a"
               ],
               "failures": [],
               "pending": [],
               "skipped": [],
-              "duration": 8,
+              "duration": 6,
               "root": false,
               "rootEmpty": false,
               "_timeout": 10000
